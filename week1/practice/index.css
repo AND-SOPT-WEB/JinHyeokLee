@@ -6,6 +6,13 @@
   width: 500px;
   border: 1px solid blue;
   margin: auto;
+  background-color: skyblue;
+  color: white;
+  border-radius: 12px;
+}
+
+.wrapper > p {
+  font-weight: 600;
 }
 
 .text:hover {
