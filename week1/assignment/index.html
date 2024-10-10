@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./assets/icons/wave.png" />
+    <title>week1 assignment</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- 홈 배너 -->
+      <div class="homeBanner">
+        <img src="./assets/images/background.png" alt="웹파트 단체사진" />
+
+        <div class="bannerBtnWrapper">
+          <div>🌊 AND SOPT Wave Web</div>
+          <a href="https://www.instagram.com/wave_web_official/" target="_blank"
+            >바로가기</a
+          >
+        </div>
+      </div>
+
+      <!-- 헤더 -->
+      <header>
+        <div class="logoWrapper">
+          <a href="#">
+            <img src="./assets/images/sopt_logo.png" alt="SOPT 로고" />
+          </a>
+          <nav class="menuNav">
+            <ul>
+              <li>물결</li>
+              <li>웹팟</li>
+              <li>화이팅</li>
+            </ul>
+          </nav>
+        </div>
+
+        <nav class="iconNav">
+          <ul>
+            <li>
+              <img src="./assets/icons/search_icon.svg" alt="검색 아이콘" />
+            </li>
+            <li>
+              <img src="./assets/icons/alarm_icon.svg" alt="알림 아이콘" />
+            </li>
+            <li>
+              <img
+                src="./assets/icons/menu_icon.svg"
+                alt="알림 아이콘"
+                id="menuIcon"
+              />
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <!-- 무한 배너 -->
+        <section class="infiniteWrapper">
+          <p>무한 배너</p>
+          <div class="loopWrapper">
+            <ul class="loopList list1">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+
+            <ul class="loopList list2">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 스크롤 뷰 -->
+        <section class="scrollViewWrapper">
+          <p>스크롤 뷰</p>
+          <div class="scrollOuterBox">
+            <a href="#firstImg" class="scrollBtn leftBtn">≪</a>
+            <div class="scrollInnerBox">
+              <ul>
+                <li id="firstImg"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li id="lastImg"></li>
+              </ul>
+            </div>
+            <a href="#lastImg" class="scrollBtn rightBtn">≫</a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
