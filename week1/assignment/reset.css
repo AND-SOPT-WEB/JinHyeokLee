@@ -139,3 +139,7 @@ a {
 a:visited {
   color: inherit;
 }
+
+button {
+  all: unset;
+}

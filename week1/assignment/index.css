@@ -8,6 +8,7 @@ body {
   width: 100%;
 }
 
+/* 홈 배너 */
 .homeBanner {
   width: 100%;
   position: relative;
@@ -67,6 +68,7 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+/* 헤더 */
 header {
   position: fixed;
   top: 0;
@@ -145,9 +147,9 @@ header {
   }
 }
 
+/* 무한 배너 */
 .infiniteWrapper {
   padding: 0 50px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -253,4 +255,108 @@ header {
 
 .loopList li:nth-child(10) {
   background-image: url(./assets/images/infiniteBanner/infinite10.jpg);
+}
+
+/* 스크롤 뷰 */
+.scrollViewWrapper {
+  padding: 0 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 100px 0;
+}
+
+.scrollViewWrapper p {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.scrollOuterBox {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  animation: all 0.5s ease-in-out;
+}
+
+.scrollInnerBox {
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+
+  /* 스크롤 부드럽게 animation 대신!!*/
+  scroll-behavior: smooth;
+}
+
+.scrollInnerBox::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollInnerBox ul {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  height: 100%;
+}
+
+.scrollInnerBox ul li {
+  width: 250px;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.scrollBtn {
+  width: 30px;
+  height: 100%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin: 0 5px;
+
+  background-color: #6d6d6db4;
+  cursor: pointer;
+}
+
+.scrollInnerBox ul li:nth-child(1) {
+  background-image: url(./assets/images/scrollView/scroll1.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(2) {
+  background-image: url(./assets/images/scrollView/scroll2.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(3) {
+  background-image: url(./assets/images/scrollView/scroll3.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(4) {
+  background-image: url(./assets/images/scrollView/scroll4.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(5) {
+  background-image: url(./assets/images/scrollView/scroll5.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(6) {
+  background-image: url(./assets/images/scrollView/scroll6.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(7) {
+  background-image: url(./assets/images/scrollView/scroll7.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(8) {
+  background-image: url(./assets/images/scrollView/scroll8.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(9) {
+  background-image: url(./assets/images/scrollView/scroll9.jpg);
+  background-size: cover;
+}
+.scrollInnerBox ul li:nth-child(10) {
+  background-image: url(./assets/images/scrollView/scroll10.jpg);
+  background-size: cover;
 }
