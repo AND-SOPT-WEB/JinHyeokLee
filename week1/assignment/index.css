@@ -4,6 +4,10 @@ body {
   background-color: #1c1b1a;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .wrapper {
   width: 100%;
 }
@@ -158,14 +162,22 @@ header {
 
 .infiniteWrapper p {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1rem;
+
+  @media (min-width: 601px) {
+    font-size: 1.5rem;
+  }
 }
 
 .loopWrapper {
   position: relative;
   display: flex;
-  height: 200px;
+  height: 150px;
   overflow: hidden;
+
+  @media (min-width: 601px) {
+    height: 200px;
+  }
 }
 
 .loopList {
@@ -185,9 +197,14 @@ header {
 }
 
 .loopList li {
-  width: 200px;
+  width: 150px;
   height: 100%;
   transition: all 0.4s ease-in-out;
+
+  @media (min-width: 601px) {
+    font-size: 1.5rem;
+    width: 200px;
+  }
 }
 
 .loopList li:hover {
@@ -269,15 +286,23 @@ header {
 
 .scrollViewWrapper p {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1rem;
+
+  @media (min-width: 601px) {
+    font-size: 1.5rem;
+  }
 }
 
 .scrollOuterBox {
   width: 100%;
-  height: 300px;
+  height: 200px;
   display: flex;
   align-items: center;
   animation: all 0.5s ease-in-out;
+
+  @media (min-width: 601px) {
+    height: 300px;
+  }
 }
 
 .scrollInnerBox {
@@ -301,9 +326,13 @@ header {
 }
 
 .scrollInnerBox ul li {
-  width: 250px;
+  width: 180px;
   height: 100%;
   border-radius: 12px;
+
+  @media (min-width: 601px) {
+    width: 250px;
+  }
 }
 
 .scrollBtn {
