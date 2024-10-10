@@ -144,3 +144,113 @@ header {
     display: none;
   }
 }
+
+.infiniteWrapper {
+  padding: 0 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 100px 0;
+}
+
+.infiniteWrapper p {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.loopWrapper {
+  position: relative;
+  display: flex;
+  height: 200px;
+  overflow: hidden;
+}
+
+.loopList {
+  position: absolute;
+  display: flex;
+  gap: 30px;
+  height: 100%;
+}
+
+.list1 {
+  animation: loop1 15s linear infinite;
+}
+
+.list2 {
+  margin-left: 30px;
+  animation: loop2 15s linear infinite;
+}
+
+.loopList li {
+  width: 200px;
+  height: 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+.loopList li:hover {
+  transform: scale(1.3);
+  transition: all 0.4s ease-in-out;
+}
+
+@keyframes loop1 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes loop2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+.loopList li {
+  background-size: cover;
+  background-position: center;
+}
+
+.loopList li:nth-child(1) {
+  background-image: url(./assets/images/infiniteBanner/infinite1.jpg);
+}
+
+.loopList li:nth-child(2) {
+  background-image: url(./assets/images/infiniteBanner/infinite2.jpg);
+}
+
+.loopList li:nth-child(3) {
+  background-image: url(./assets/images/infiniteBanner/infinite3.jpg);
+}
+
+.loopList li:nth-child(4) {
+  background-image: url(./assets/images/infiniteBanner/infinite4.jpg);
+}
+
+.loopList li:nth-child(5) {
+  background-image: url(./assets/images/infiniteBanner/infinite5.jpg);
+}
+
+.loopList li:nth-child(6) {
+  background-image: url(./assets/images/infiniteBanner/infinite6.jpg);
+}
+
+.loopList li:nth-child(7) {
+  background-image: url(./assets/images/infiniteBanner/infinite7.jpg);
+}
+
+.loopList li:nth-child(8) {
+  background-image: url(./assets/images/infiniteBanner/infinite8.jpg);
+}
+
+.loopList li:nth-child(9) {
+  background-image: url(./assets/images/infiniteBanner/infinite9.jpg);
+}
+
+.loopList li:nth-child(10) {
+  background-image: url(./assets/images/infiniteBanner/infinite10.jpg);
+}
