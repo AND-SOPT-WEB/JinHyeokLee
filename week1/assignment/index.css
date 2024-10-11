@@ -349,43 +349,46 @@ header {
   cursor: pointer;
 }
 
+.scrollInnerBox ul li {
+  background-size: cover;
+}
+
 .scrollInnerBox ul li:nth-child(1) {
   background-image: url(./assets/images/scrollView/scroll1.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(2) {
   background-image: url(./assets/images/scrollView/scroll2.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(3) {
   background-image: url(./assets/images/scrollView/scroll3.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(4) {
   background-image: url(./assets/images/scrollView/scroll4.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(5) {
   background-image: url(./assets/images/scrollView/scroll5.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(6) {
   background-image: url(./assets/images/scrollView/scroll6.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(7) {
   background-image: url(./assets/images/scrollView/scroll7.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(8) {
   background-image: url(./assets/images/scrollView/scroll8.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(9) {
   background-image: url(./assets/images/scrollView/scroll9.jpg);
-  background-size: cover;
 }
+
 .scrollInnerBox ul li:nth-child(10) {
   background-image: url(./assets/images/scrollView/scroll10.jpg);
-  background-size: cover;
 }
