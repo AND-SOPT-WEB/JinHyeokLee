@@ -183,7 +183,6 @@ header {
 .loopList {
   position: absolute;
   display: flex;
-  gap: 30px;
   height: 100%;
 }
 
@@ -192,7 +191,6 @@ header {
 }
 
 .list2 {
-  margin-left: 30px;
   animation: loop2 15s linear infinite;
 }
 
@@ -200,6 +198,7 @@ header {
   width: 150px;
   height: 100%;
   transition: all 0.4s ease-in-out;
+  margin-right: 20px;
 
   @media (min-width: 601px) {
     font-size: 1.5rem;
