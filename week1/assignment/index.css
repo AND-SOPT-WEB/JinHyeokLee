@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   bottom: 2rem;
   right: 1rem;
 
@@ -40,9 +40,9 @@ body::-webkit-scrollbar {
 .bannerBtnWrapper > div {
   background-color: #ffffff;
   color: #6e96db;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   border-radius: 10px;
   display: none;
 
@@ -58,12 +58,12 @@ body::-webkit-scrollbar {
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
 
-  padding: 8px 10px;
-  font-size: 0.7rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
 
   @media (min-width: 601px) {
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -77,31 +77,36 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 2rem;
   width: 100%;
-  height: 70px;
+  height: 7rem;
 }
 
 .logoWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
+  gap: 5rem;
+}
+
+.logoWrapper li {
+  font-size: 1.6rem;
 }
 
 .logoWrapper img {
-  width: 50px;
+  width: 5rem;
 
   @media (min-width: 391px) {
-    width: 80px;
+    width: 8rem;
   }
 
   @media (min-width: 601px) {
-    width: 100px;
+    width: 10rem;
   }
 }
 
@@ -116,7 +121,7 @@ header {
 .menuNav ul {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
   font-size: 1rem;
   font-weight: 400;
   color: #ffffff;
@@ -126,7 +131,7 @@ header {
 .iconNav ul {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
   cursor: pointer;
 }
 
@@ -135,16 +140,16 @@ header {
 
   @media (min-width: 391px) {
     display: inline;
-    width: 20px;
+    width: 2rem;
   }
 
   @media (min-width: 601px) {
-    width: 24px;
+    width: 2.4rem;
   }
 }
 
 #menuIcon {
-  width: 20px;
+  width: 2rem;
 
   @media (min-width: 391px) {
     display: none;
@@ -153,30 +158,30 @@ header {
 
 /* 무한 배너 */
 .infiniteWrapper {
-  padding: 0 50px;
+  padding: 0 5rem;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin: 100px 0;
+  gap: 5rem;
+  margin: 10rem 0;
 }
 
 .infiniteWrapper p {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.6rem;
 
   @media (min-width: 601px) {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
   }
 }
 
 .loopWrapper {
   position: relative;
   display: flex;
-  height: 150px;
+  height: 15rem;
   overflow: hidden;
 
   @media (min-width: 601px) {
-    height: 200px;
+    height: 20rem;
   }
 }
 
@@ -194,19 +199,20 @@ header {
   animation: loop2 15s linear infinite;
 }
 
-.loopList li {
-  width: 150px;
+.loopList li img {
+  width: 15rem;
   height: 100%;
   transition: all 0.4s ease-in-out;
-  margin-right: 20px;
+  margin-right: 2rem;
+  object-fit: cover;
 
   @media (min-width: 601px) {
     font-size: 1.5rem;
-    width: 200px;
+    width: 20rem;
   }
 }
 
-.loopList li:hover {
+.loopList li img:hover {
   transform: scale(1.3);
   transition: all 0.4s ease-in-out;
 }
@@ -228,79 +234,35 @@ header {
     transform: translateX(0%);
   }
 }
-.loopList li {
-  background-size: cover;
-  background-position: center;
-}
-
-.loopList li:nth-child(1) {
-  background-image: url(./assets/images/infiniteBanner/infinite1.jpg);
-}
-
-.loopList li:nth-child(2) {
-  background-image: url(./assets/images/infiniteBanner/infinite2.jpg);
-}
-
-.loopList li:nth-child(3) {
-  background-image: url(./assets/images/infiniteBanner/infinite3.jpg);
-}
-
-.loopList li:nth-child(4) {
-  background-image: url(./assets/images/infiniteBanner/infinite4.jpg);
-}
-
-.loopList li:nth-child(5) {
-  background-image: url(./assets/images/infiniteBanner/infinite5.jpg);
-}
-
-.loopList li:nth-child(6) {
-  background-image: url(./assets/images/infiniteBanner/infinite6.jpg);
-}
-
-.loopList li:nth-child(7) {
-  background-image: url(./assets/images/infiniteBanner/infinite7.jpg);
-}
-
-.loopList li:nth-child(8) {
-  background-image: url(./assets/images/infiniteBanner/infinite8.jpg);
-}
-
-.loopList li:nth-child(9) {
-  background-image: url(./assets/images/infiniteBanner/infinite9.jpg);
-}
-
-.loopList li:nth-child(10) {
-  background-image: url(./assets/images/infiniteBanner/infinite10.jpg);
-}
 
 /* 스크롤 뷰 */
 .scrollViewWrapper {
-  padding: 0 50px;
+  padding: 0 5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  margin: 100px 0;
+  gap: 5rem;
+  margin: 10rem 0;
 }
 
 .scrollViewWrapper p {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.6rem;
 
   @media (min-width: 601px) {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
   }
 }
 
 .scrollOuterBox {
   width: 100%;
-  height: 200px;
+  height: 20rem;
   display: flex;
   align-items: center;
   animation: all 0.5s ease-in-out;
 
   @media (min-width: 601px) {
-    height: 300px;
+    height: 30rem;
   }
 }
 
@@ -319,75 +281,32 @@ header {
 
 .scrollInnerBox ul {
   display: flex;
-  gap: 20px;
+  gap: 2rem;
   width: max-content;
   height: 100%;
 }
 
-.scrollInnerBox ul li {
-  width: 180px;
+.scrollInnerBox ul li img {
+  width: 18rem;
   height: 100%;
   border-radius: 12px;
+  object-fit: cover;
 
   @media (min-width: 601px) {
-    width: 250px;
+    width: 25rem;
   }
 }
 
 .scrollBtn {
-  width: 30px;
+  width: 3rem;
   height: 100%;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  margin: 0 5px;
+  margin: 0 0.5rem;
 
   background-color: #6d6d6db4;
   cursor: pointer;
-}
-
-.scrollInnerBox ul li {
-  background-size: cover;
-}
-
-.scrollInnerBox ul li:nth-child(1) {
-  background-image: url(./assets/images/scrollView/scroll1.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(2) {
-  background-image: url(./assets/images/scrollView/scroll2.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(3) {
-  background-image: url(./assets/images/scrollView/scroll3.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(4) {
-  background-image: url(./assets/images/scrollView/scroll4.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(5) {
-  background-image: url(./assets/images/scrollView/scroll5.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(6) {
-  background-image: url(./assets/images/scrollView/scroll6.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(7) {
-  background-image: url(./assets/images/scrollView/scroll7.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(8) {
-  background-image: url(./assets/images/scrollView/scroll8.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(9) {
-  background-image: url(./assets/images/scrollView/scroll9.jpg);
-}
-
-.scrollInnerBox ul li:nth-child(10) {
-  background-image: url(./assets/images/scrollView/scroll10.jpg);
 }
