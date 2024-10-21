@@ -1,6 +1,10 @@
 let todoList = [];
 
 const addTodo = () => {
+  if (input.value === '') {
+    return;
+  }
+
   todoList.push(input.value);
   localStorage.setItem('todoList', JSON.stringify(todoList));
 
