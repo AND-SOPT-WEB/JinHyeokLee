@@ -1,4 +1,4 @@
-export const members = [
+const members = [
   {
     id: 1,
     name: '강민하',
@@ -294,3 +294,5 @@ export const members = [
 if (!localStorage.getItem('membersData')) {
   localStorage.setItem('membersData', JSON.stringify(members));
 }
+
+export default members;

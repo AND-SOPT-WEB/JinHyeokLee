@@ -4,7 +4,7 @@
   /* color */
   --main: #ffd900;
 
-  --gray1: #f9f9f9;
+  --gray1: #eaeaea;
   --gray2: #e1e1e1;
   --gray3: #b8b8b8;
 
@@ -18,6 +18,10 @@
   /* typography */
 
   /* screen size */
+}
+
+body {
+  background-color: var(--gray1);
 }
 
 header {
@@ -42,10 +46,11 @@ main {
   padding: 0 20rem;
 }
 
-.filter {
+.filter_wrapper {
   width: 100%;
   display: grid;
   margin-top: 10rem;
+  background-color: var(--white);
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-template-areas:
@@ -132,4 +137,57 @@ main {
   background-color: var(--main);
   color: var(--white);
   font-weight: 700;
+}
+
+.table_wrapper {
+  width: 100%;
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.table_btn_container {
+  display: flex;
+  gap: 0.5rem;
+  align-self: flex-end;
+  margin-bottom: 1rem;
+}
+
+.table_btn_container button {
+  width: 5rem;
+  text-align: center;
+  white-space: nowrap;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.table_delete_btn {
+  background-color: var(--white);
+  border: 1px solid var(--gray2);
+  color: var(--gray3);
+  font-weight: 700;
+}
+
+.table_add_btn {
+  background-color: var(--main);
+  color: var(--white);
+  font-weight: 700;
+}
+
+thead {
+  background-color: var(--gray3);
+  color: var(--white);
+}
+
+tbody {
+  background-color: var(--white);
+}
+
+th,
+td {
+  width: 13rem;
+  height: 50px;
+  vertical-align: middle;
+  text-align: center;
 }

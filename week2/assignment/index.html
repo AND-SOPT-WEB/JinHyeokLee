@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
     <title>week2 assignment</title>
+    <script type="module" src="./index.js"></script>
   </head>
+
   <body>
+    <!-- header -->
     <header>
       <img src="" alt="메뉴 아이콘" />
       <h2>AND SOPT PAGE</h2>
       <p>🌊 AND SOPT WEB YB 이진혁 🌊</p>
     </header>
     <main>
-      <section class="filter">
+      <!-- filter -->
+      <section class="filter_wrapper">
         <div class="form_box">
           <label for="name">이름</label>
           <input id="name" type="text" placeholder="이름을 입력하세요" />
@@ -68,6 +72,29 @@
         <div class="form_box">
           <button class="search_btn" type="submit">검색</button>
         </div>
+      </section>
+
+      <!-- table -->
+      <section class="table_wrapper">
+        <div class="table_btn_container">
+          <button type="button" class="table_delete_btn">선택 삭제</button>
+          <button type="button" class="table_add_btn">추가</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" /></th>
+              <th>이름</th>
+              <th>영문 이름</th>
+              <th>GitHub</th>
+              <th>성별</th>
+              <th>역할</th>
+              <th>1주차 금잔디</th>
+              <th>2주차 금잔디</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </section>
     </main>
   </body>
