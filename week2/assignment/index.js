@@ -84,25 +84,15 @@ const isAllChecked = () => {
 };
 
 const handleAllChecked = () => {
-  const allCheckbox = document.querySelectorAll('tbody input');
+  const allCheckbox = document.querySelectorAll('tbody input[type="checkbox"]');
 
-  if (thCheckbox.checked === true) {
-    allCheckbox.forEach((checkbox) => {
-      checkbox.checked = true;
-    });
-  } else {
-    allCheckbox.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-  }
+  allCheckbox.forEach((checkbox) => {
+    checkbox.checked = thCheckbox.checked;
+  });
 };
 
 const updateThCheckbox = () => {
-  if (isAllChecked()) {
-    thCheckbox.checked = true;
-  } else {
-    thCheckbox.checked = false;
-  }
+  thCheckbox.checked = isAllChecked();
 };
 
 thCheckbox.addEventListener('click', handleAllChecked);
