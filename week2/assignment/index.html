@@ -9,9 +9,66 @@
   <body>
     <header>
       <img src="" alt="메뉴 아이콘" />
-      <h1>AND SOPT PAGE</h1>
+      <h2>AND SOPT PAGE</h2>
       <p>🌊 AND SOPT WEB YB 이진혁 🌊</p>
     </header>
-    <main></main>
+    <main>
+      <section class="filter">
+        <div class="form_box">
+          <label for="name">이름</label>
+          <input id="name" type="text" placeholder="이름을 입력하세요" />
+        </div>
+
+        <div class="form_box">
+          <label for="en_name">영문 이름</label>
+          <input
+            id="en_name"
+            type="text"
+            placeholder="영문 이름을 입력하세요"
+          />
+        </div>
+
+        <div class="form_box">
+          <label for="github">GitHub</label>
+          <input id="github" type="text" placeholder="GitHub ID를 입력하세요" />
+        </div>
+
+        <div class="form_box">
+          <label for="gender">성별</label>
+          <select name="gender" id="gender">
+            <option value="none" selected disabled>성별 선택</option>
+            <option value="female">여성</option>
+            <option value="male">님성</option>
+          </select>
+        </div>
+
+        <div class="form_box">
+          <label for="role">역할</label>
+          <select name="role" id="role">
+            <option value="none" selected disabled>OB / YB 선택</option>
+            <option value="OB">OB</option>
+            <option value="YB">YB</option>
+          </select>
+        </div>
+
+        <div class="form_box">
+          <label for="">1주차 금잔디조</label>
+          <input type="text" placeholder="1주차 금잔디조를 입력하세요 (1~9)" />
+        </div>
+
+        <div class="form_box">
+          <label for="">2주차 금잔디조</label>
+          <input type="text" placeholder="2주차 금잔디조를 입력하세요 (1~9)" />
+        </div>
+
+        <div class="form_box">
+          <button class="reset_btn" type="submit">초기화</button>
+        </div>
+
+        <div class="form_box">
+          <button class="search_btn" type="submit">검색</button>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
