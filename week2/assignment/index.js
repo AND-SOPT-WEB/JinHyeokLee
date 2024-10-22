@@ -54,3 +54,23 @@ const loadData = () => {
 };
 
 loadData();
+
+// filter 초기화 구현
+const resetBtn = document.querySelector('.reset_btn');
+
+const resetFilter = () => {
+  const allInputValue = document.querySelectorAll('.form_box > input');
+  const allSelect = document.querySelectorAll('.form_box select');
+
+  allInputValue.forEach((input) => {
+    input.value = '';
+  });
+
+  allSelect.forEach((select) => {
+    select.selectedIndex = 0;
+  });
+};
+
+resetBtn.addEventListener('click', () => {
+  resetFilter();
+});
