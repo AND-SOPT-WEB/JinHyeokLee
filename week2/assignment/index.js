@@ -20,10 +20,21 @@ window.addEventListener('scroll', () => {
   window.scrollY;
 });
 
-// 초기 데이터 로딩 (localStorage 사용 아직 X)
+// load data 구현
+const getMembersData = () => {
+  const storedData = localStorage.getItem('membersData');
+  if (storedData) {
+    return JSON.parse(storedData);
+  } else {
+    localStorage.setItem('membersData', JSON.stringify(members));
+    return members;
+  }
+};
 
-const loadData = () => {
-  members.forEach((member) => {
+let membersData = getMembersData();
+
+const loadData = (membersData) => {
+  membersData.forEach((member) => {
     const tr = document.createElement('tr');
     const tbody = document.querySelector('tbody');
 
@@ -53,7 +64,7 @@ const loadData = () => {
   });
 };
 
-loadData();
+loadData(membersData);
 
 // filter 초기화 구현
 const resetBtn = document.querySelector('.reset_btn');
