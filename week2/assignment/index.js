@@ -71,6 +71,42 @@ const resetFilter = () => {
   });
 };
 
-resetBtn.addEventListener('click', () => {
-  resetFilter();
+resetBtn.addEventListener('click', resetFilter);
+
+// table checkbox all
+
+const thCheckbox = document.querySelector('#th_checkbox');
+const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+const isAllChecked = () => {
+  const allCheckbox = document.querySelectorAll('tbody input[type="checkbox"]');
+  return Array.from(allCheckbox).every((checkbox) => checkbox.checked);
+};
+
+const handleAllChecked = () => {
+  const allCheckbox = document.querySelectorAll('tbody input');
+
+  if (thCheckbox.checked === true) {
+    allCheckbox.forEach((checkbox) => {
+      checkbox.checked = true;
+    });
+  } else {
+    allCheckbox.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  }
+};
+
+const updateThCheckbox = () => {
+  if (isAllChecked()) {
+    thCheckbox.checked = true;
+  } else {
+    thCheckbox.checked = false;
+  }
+};
+
+thCheckbox.addEventListener('click', handleAllChecked);
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('click', updateThCheckbox);
 });
