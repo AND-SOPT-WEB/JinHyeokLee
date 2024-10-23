@@ -46,8 +46,16 @@ export const initModal = () => {
     document.body.style.overflow = 'auto';
   });
 
-  modal.addEventListener('click', (e) => {
-    if (e.target.nodeName === 'DIALOG') modal.close();
+  modal.addEventListener('click', (event) => {
+    const rect = modal.getBoundingClientRect();
+    if (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    ) {
+      modal.close();
+    }
   });
 
   // 멤버 추가 버튼 이벤트
