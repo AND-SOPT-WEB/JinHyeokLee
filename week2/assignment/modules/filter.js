@@ -1,5 +1,4 @@
-import members from '../data/members.js';
-import { loadData } from './table.js';
+import { loadData, membersData } from './table.js';
 
 const getFilterValues = () => {
   const name = document.querySelector('#name').value;
@@ -62,12 +61,12 @@ export const initFilter = () => {
 
   resetBtn.addEventListener('click', () => {
     resetFilterInputs();
-    loadData(members);
+    loadData(membersData);
   });
 
   searchBtn.addEventListener('click', () => {
     const filterValues = getFilterValues();
-    const filteredMembers = members.filter((member) =>
+    const filteredMembers = membersData.filter((member) =>
       matchesFilters(member, filterValues)
     );
     loadData(filteredMembers);
