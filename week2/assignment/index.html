@@ -11,7 +11,7 @@
   <body>
     <!-- header -->
     <header>
-      <img src="./assets/icons/free-icon-menu-1828859.png" alt="메뉴 아이콘" />
+      <img src="./assets/icons/menu_icon.png" alt="메뉴 아이콘" />
       <h2>AND SOPT PAGE</h2>
       <p>🌊 AND SOPT WEB YB 이진혁 🌊</p>
     </header>
@@ -109,70 +109,76 @@
     <!-- modal -->
     <dialog class="modal">
       <form method="dialog">
-        <div>
-          <h2></h2>
-          <button type="submit" class="close_btn">X</button>
-        </div>
+        <div class="modal_inner_wrapper">
+          <div class="modal_title_container">
+            <h2>🌊 새 웨비 추가</h2>
+            <button type="submit" class="close_btn"></button>
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_name"></label>
-          <input id="modal_name" type="text" placeholder="이름을 입력하세요" />
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_name">이름</label>
+            <input
+              id="modal_name"
+              type="text"
+              placeholder="이름을 입력하세요"
+            />
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_englishName"></label>
-          <input
-            id="modal_englishName"
-            type="text"
-            placeholder="영문 이름을 입력하세요"
-          />
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_englishName">영문 이름</label>
+            <input
+              id="modal_englishName"
+              type="text"
+              placeholder="영문 이름을 입력하세요"
+            />
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_github"></label>
-          <input
-            id="modal_github"
-            type="text"
-            placeholder="GitHub ID를 입력하세요"
-          />
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_github">GitHub ID</label>
+            <input
+              id="modal_github"
+              type="text"
+              placeholder="GitHub ID를 입력하세요"
+            />
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_gender"></label>
-          <select name="modal_gender" id="modal_gender">
-            <option value="" selected disabled>성별 선택</option>
-            <option value="female">여성</option>
-            <option value="male">남성</option>
-          </select>
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_gender">성별</label>
+            <select name="modal_gender" id="modal_gender">
+              <option value="" selected disabled>성별 선택</option>
+              <option value="female">여성</option>
+              <option value="male">남성</option>
+            </select>
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_role">역할</label>
-          <select name="modal_role" id="modal_role">
-            <option value="" selected disabled>OB / YB 선택</option>
-            <option value="OB">OB</option>
-            <option value="YB">YB</option>
-          </select>
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_role">역할</label>
+            <select name="modal_role" id="modal_role">
+              <option value="" selected disabled>OB / YB 선택</option>
+              <option value="OB">OB</option>
+              <option value="YB">YB</option>
+            </select>
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_week1">1주차 금잔디조</label>
-          <input
-            id="modal_week1"
-            type="text"
-            placeholder="1주차 금잔디조를 입력하세요 (1~9)"
-          />
-        </div>
+          <div class="modal_form_box">
+            <label for="modal_week1">1주차 금잔디조</label>
+            <input
+              id="modal_week1"
+              type="text"
+              placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+            />
+          </div>
 
-        <div class="modal_form_box">
-          <label for="modal_week2">2주차 금잔디조</label>
-          <input
-            id="modal_week2"
-            type="text"
-            placeholder="2주차 금잔디조를 입력하세요 (1~9)"
-          />
+          <div class="modal_form_box">
+            <label for="modal_week2">2주차 금잔디조</label>
+            <input
+              id="modal_week2"
+              type="text"
+              placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+            />
+          </div>
+          <button class="add_btn">추가하기</button>
         </div>
-        <button class="add_btn">추가하기</button>
       </form>
     </dialog>
   </body>
