@@ -35,15 +35,22 @@ export const initModal = () => {
   const modal = document.querySelector('.modal');
   const addBtn = modal.querySelector('.add_btn');
 
+  // 모달 열기
   modalOpenBtn.addEventListener('click', () => {
     modal.showModal();
     document.body.style.overflow = 'hidden'; // modal 열리면 scroll 막기
   });
 
+  // 모달 닫기
   modal.addEventListener('close', () => {
     document.body.style.overflow = 'auto';
   });
 
+  modal.addEventListener('click', (e) => {
+    if (e.target.nodeName === 'DIALOG') modal.close();
+  });
+
+  // 멤버 추가 버튼 이벤트
   addBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
