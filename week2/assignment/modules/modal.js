@@ -22,6 +22,11 @@ const validateNewInput = () => {
     return false;
   }
 
+  if (isNaN(firstWeekGroup) || isNaN(secondWeekGroup)) {
+    alert('금잔디조🍀 필드는 숫자여야 합니다!!');
+    return false;
+  }
+
   return true;
 };
 
