@@ -187,6 +187,5 @@ modalOpenBtn.addEventListener('click', () => {
 });
 
 modal.addEventListener('close', () => {
-  console.log('close');
   document.body.style.overflow = 'auto';
 });
