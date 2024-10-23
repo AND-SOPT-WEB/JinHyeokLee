@@ -176,7 +176,7 @@ main {
   font-weight: 700;
 }
 
-.table_add_btn {
+.modal_open_btn {
   background-color: var(--main);
   color: var(--white);
   font-weight: 700;

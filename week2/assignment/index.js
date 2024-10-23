@@ -174,3 +174,11 @@ searchBtn.addEventListener('click', () => {
 
   loadData(filteredMembers);
 });
+
+// modal open 로직
+const modalOpenBtn = document.querySelector('.modal_open_btn');
+const modal = document.querySelector('.modal');
+
+modalOpenBtn.addEventListener('click', () => {
+  modal.showModal();
+});
