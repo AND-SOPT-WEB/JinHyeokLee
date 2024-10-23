@@ -24,9 +24,9 @@
         </div>
 
         <div class="form_box">
-          <label for="en_name">영문 이름</label>
+          <label for="englishName">영문 이름</label>
           <input
-            id="en_name"
+            id="englishName"
             type="text"
             placeholder="영문 이름을 입력하세요"
           />
@@ -40,37 +40,45 @@
         <div class="form_box">
           <label for="gender">성별</label>
           <select name="gender" id="gender">
-            <option selected disabled>성별 선택</option>
+            <option value="" selected disabled>성별 선택</option>
             <option value="female">여성</option>
-            <option value="male">님성</option>
+            <option value="male">남성</option>
           </select>
         </div>
 
         <div class="form_box">
           <label for="role">역할</label>
           <select name="role" id="role">
-            <option selected disabled>OB / YB 선택</option>
+            <option value="" selected disabled>OB / YB 선택</option>
             <option value="OB">OB</option>
             <option value="YB">YB</option>
           </select>
         </div>
 
         <div class="form_box">
-          <label for="">1주차 금잔디조</label>
-          <input type="text" placeholder="1주차 금잔디조를 입력하세요 (1~9)" />
+          <label for="week1">1주차 금잔디조</label>
+          <input
+            id="week1"
+            type="text"
+            placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+          />
         </div>
 
         <div class="form_box">
-          <label for="">2주차 금잔디조</label>
-          <input type="text" placeholder="2주차 금잔디조를 입력하세요 (1~9)" />
+          <label for="week2">2주차 금잔디조</label>
+          <input
+            id="week2"
+            type="text"
+            placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+          />
         </div>
 
         <div class="form_box">
-          <button class="reset_btn" type="submit">초기화</button>
+          <button class="reset_btn" type="button">초기화</button>
         </div>
 
         <div class="form_box">
-          <button class="search_btn" type="submit">검색</button>
+          <button class="search_btn" type="button">검색</button>
         </div>
       </section>
 

@@ -20,7 +20,7 @@ window.addEventListener('scroll', () => {
   window.scrollY;
 });
 
-// load data 구현
+// localStorage 초기 세팅
 const getMembersData = () => {
   const storedData = localStorage.getItem('membersData');
   if (storedData) {
@@ -33,7 +33,12 @@ const getMembersData = () => {
 
 let membersData = getMembersData();
 
+// load data 구현
+const tbody = document.querySelector('tbody');
+
 const loadData = (membersData) => {
+  tbody.innerHTML = '';
+
   membersData.forEach((member) => {
     const tr = document.createElement('tr');
     const tbody = document.querySelector('tbody');
@@ -66,24 +71,6 @@ const loadData = (membersData) => {
 
 loadData(membersData);
 
-// filter 초기화 구현
-const resetBtn = document.querySelector('.reset_btn');
-
-const resetFilter = () => {
-  const allInputValue = document.querySelectorAll('.form_box > input');
-  const allSelect = document.querySelectorAll('.form_box select');
-
-  allInputValue.forEach((input) => {
-    input.value = '';
-  });
-
-  allSelect.forEach((select) => {
-    select.selectedIndex = 0;
-  });
-};
-
-resetBtn.addEventListener('click', resetFilter);
-
 // table checkbox all
 
 const thCheckbox = document.querySelector('#th_checkbox');
@@ -110,4 +97,80 @@ thCheckbox.addEventListener('click', handleAllChecked);
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener('click', updateThCheckbox);
+});
+
+// filter 초기화 구현
+const resetBtn = document.querySelector('.reset_btn');
+
+const resetFilter = () => {
+  const allInputValue = document.querySelectorAll('.form_box > input');
+  const allSelect = document.querySelectorAll('.form_box select');
+
+  allInputValue.forEach((input) => {
+    input.value = '';
+  });
+
+  allSelect.forEach((select) => {
+    select.selectedIndex = 0;
+  });
+
+  loadData(membersData);
+};
+
+resetBtn.addEventListener('click', resetFilter);
+
+// 필터 조건 검사
+// 리팩토링 해보기... 더 좋은 방법이 없을까...
+
+const matchesFilters = (member, filters) => {
+  return Object.entries(filters).every(([key, value]) => {
+    // 필터값 없거나 select default 값일 때
+    if (value === '') {
+      return true;
+    }
+
+    // 금잔디 (Number)
+    if (key === 'firstWeekGroup' || key === 'secondWeekGroup') {
+      return member[key] === Number(value);
+    }
+
+    // 성별
+    if (key === 'gender') {
+      return member[key] === value;
+    }
+
+    return member[key].toLowerCase().includes(value.toLowerCase());
+  });
+};
+
+// 필터 값 가져오기
+const getFilterValues = () => {
+  const name = document.querySelector('#name').value;
+  const englishName = document.querySelector('#englishName').value;
+  const github = document.querySelector('#github').value;
+  const gender = document.querySelector('#gender').value;
+  const role = document.querySelector('#role').value;
+  const firstWeekGroup = document.querySelector('#week1').value;
+  const secondWeekGroup = document.querySelector('#week2').value;
+
+  return {
+    name,
+    englishName,
+    github,
+    gender,
+    role,
+    firstWeekGroup,
+    secondWeekGroup,
+  };
+};
+
+const searchBtn = document.querySelector('.search_btn');
+
+searchBtn.addEventListener('click', () => {
+  const filterValues = getFilterValues();
+  const filteredMembers = membersData.filter((member) =>
+    matchesFilters(member, filterValues)
+  );
+
+  loadData(filteredMembers);
 });
