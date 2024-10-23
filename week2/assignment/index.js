@@ -33,6 +33,39 @@ const getMembersData = () => {
 
 let membersData = getMembersData();
 
+// table checkbox all
+const updateCheckboxListeners = () => {
+  const thCheckbox = document.querySelector('#th_checkbox');
+  const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+
+  const isAllChecked = () => {
+    const allCheckbox = document.querySelectorAll(
+      'tbody input[type="checkbox"]'
+    );
+    return Array.from(allCheckbox).every((checkbox) => checkbox.checked);
+  };
+
+  const handleAllChecked = () => {
+    const allCheckbox = document.querySelectorAll(
+      'tbody input[type="checkbox"]'
+    );
+
+    allCheckbox.forEach((checkbox) => {
+      checkbox.checked = thCheckbox.checked;
+    });
+  };
+
+  const updateThCheckbox = () => {
+    thCheckbox.checked = isAllChecked();
+  };
+
+  thCheckbox.addEventListener('click', handleAllChecked);
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('click', updateThCheckbox);
+  });
+};
+
 // load data 구현
 const tbody = document.querySelector('tbody');
 
@@ -67,37 +100,11 @@ const loadData = (membersData) => {
 
     tbody.appendChild(tr);
   });
+
+  updateCheckboxListeners();
 };
 
 loadData(membersData);
-
-// table checkbox all
-
-const thCheckbox = document.querySelector('#th_checkbox');
-const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-
-const isAllChecked = () => {
-  const allCheckbox = document.querySelectorAll('tbody input[type="checkbox"]');
-  return Array.from(allCheckbox).every((checkbox) => checkbox.checked);
-};
-
-const handleAllChecked = () => {
-  const allCheckbox = document.querySelectorAll('tbody input[type="checkbox"]');
-
-  allCheckbox.forEach((checkbox) => {
-    checkbox.checked = thCheckbox.checked;
-  });
-};
-
-const updateThCheckbox = () => {
-  thCheckbox.checked = isAllChecked();
-};
-
-thCheckbox.addEventListener('click', handleAllChecked);
-
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('click', updateThCheckbox);
-});
 
 // filter 초기화 구현
 const resetBtn = document.querySelector('.reset_btn');
@@ -120,7 +127,6 @@ const resetFilter = () => {
 resetBtn.addEventListener('click', resetFilter);
 
 // 필터 조건 검사
-// 리팩토링 해보기... 더 좋은 방법이 없을까...
 
 const matchesFilters = (member, filters) => {
   return Object.entries(filters).every(([key, value]) => {
