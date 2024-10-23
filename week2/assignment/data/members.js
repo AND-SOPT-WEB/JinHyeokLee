@@ -291,8 +291,4 @@ const members = [
   },
 ];
 
-if (!localStorage.getItem('membersData')) {
-  localStorage.setItem('membersData', JSON.stringify(members));
-}
-
 export default members;
