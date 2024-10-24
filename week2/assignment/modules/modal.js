@@ -1,5 +1,15 @@
 import { addMember } from './table.js';
 
+const resetInput = () => {
+  document.querySelector('#modal_name').value = '';
+  document.querySelector('#modal_englishName').value = '';
+  document.querySelector('#modal_github').value = '';
+  document.querySelector('#modal_gender').value = '';
+  document.querySelector('#modal_role').value = '';
+  document.querySelector('#modal_week1').value = '';
+  document.querySelector('#modal_week2').value = '';
+};
+
 const validateNewInput = () => {
   const name = document.querySelector('#modal_name').value.trim();
   const englishName = document.querySelector('#modal_englishName').value.trim();
@@ -44,6 +54,7 @@ export const initModal = () => {
   // 모달 닫기
   modal.addEventListener('close', () => {
     document.body.style.overflow = 'auto';
+    resetInput();
   });
 
   modal.addEventListener('click', (event) => {
@@ -55,6 +66,7 @@ export const initModal = () => {
       event.clientY > rect.bottom
     ) {
       modal.close();
+      resetInput();
     }
   });
 
