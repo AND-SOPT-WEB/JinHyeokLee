@@ -3,9 +3,17 @@ import members from '../data/members.js';
 const tbody = document.querySelector('tbody');
 
 // 로컬스토리지 초기 세팅
+const initializeStorage = () => {
+  const storedMembers = localStorage.getItem('membersData');
+  if (!storedMembers) {
+    // 없으면 새로 세팅
+    localStorage.setItem('membersData', JSON.stringify(members));
+  }
+};
+
+// 로컬스토리지 데이터 가져오기
 const getStorageData = () => {
-  const storedMembers = JSON.parse(localStorage.getItem('membersData'));
-  return storedMembers || [...members]; // 로컬 스토리지에 data 없으면 초기 members를 사용
+  return JSON.parse(localStorage.getItem('membersData'));
 };
 
 export let membersData = getStorageData();
@@ -59,7 +67,6 @@ export const deleteSelectedMembers = () => {
   const checkboxes = document.querySelectorAll(
     'tbody input[type="checkbox"]:checked'
   );
-  console.log(checkboxes);
   const idsToDelete = Array.from(checkboxes).map((checkbox) => {
     return Number(checkbox.dataset.id);
   });
@@ -103,5 +110,7 @@ const updateCheckboxListeners = () => {
 };
 
 export const initTable = () => {
-  loadData(membersData); // 초기 데이터 로드
+  initializeStorage();
+  membersData = getStorageData();
+  loadData(membersData);
 };
