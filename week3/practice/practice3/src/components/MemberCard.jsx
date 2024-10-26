@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-const MemberCard = ({ member }) => {
-  const { name, englishName, github } = member;
+const MemberCard = ({ member: { name, englishName, github } }) => {
   const [likeNum, setLikeNum] = useState(0);
 
   const addLike = () => {
