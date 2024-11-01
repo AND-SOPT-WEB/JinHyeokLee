@@ -4,9 +4,8 @@ const handleHeaderScroll = () => {
   const isScroll = () => {
     if (window.scrollY > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   window.addEventListener('scroll', () => {
