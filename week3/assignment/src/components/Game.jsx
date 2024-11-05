@@ -8,6 +8,7 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
   const [secondNumbers, setSecondNumbers] = useState([]);
   const [nextNum, setNextNum] = useState(1);
   const [clicked, setClicked] = useState([]);
+  const [animateIndex, setAnimateIndex] = useState(null);
 
   // 게임 초기 시작 세팅
   const initGame = () => {
@@ -15,13 +16,15 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
     setFirstNumbers(generateRandomNumbers(size));
     setSecondNumbers(generateSecondNumbers(size));
     setNextNum(1);
+    setClicked([]);
+    setAnimateIndex(null);
   };
 
   // 랜덤 숫자 생성
   const generateRandomNumbers = (size) => shuffleArray(Array.from({ length: size }, (_, idx) => idx + 1));
   const generateSecondNumbers = (size) => Array.from({ length: size }, (_, idx) => size + idx + 1);
 
-  // 섞는 알고리즘 (fish..뭐시기)
+  // 섞는 알고리즘 (Fisher-Yates)
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -38,13 +41,14 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
 
     if (isFirstLayer(index)) {
       handleFirstLayerClick(index);
+      setAnimateIndex(index);
     } else if (isSecondLayer(index)) {
       handleSecondLayerClick(index);
     }
 
     // 게임 종료
     if (nextNum === LEVEL_DATA[level].size * 2) {
-      alert('끝났습니다.');
+      alert(time);
       saveRecord();
       initGame();
       resetTimer();
@@ -72,7 +76,7 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
     }
   };
 
-  // 숫자 update
+  // 숫자 업데이트
   const updateNumbers = (index) => {
     const updatedNumbers = [...firstNumbers];
     updatedNumbers[index] = secondNumbers[nextNum - 1];
@@ -104,7 +108,7 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
       <NextNum>다음 숫자 : {nextNum}</NextNum>
       <GamePadContainer size={LEVEL_DATA[level].size}>
         {firstNumbers.map((num, index) => (
-          <NumBtn key={index} onClick={() => handleClick(index)}>
+          <NumBtn key={index} onClick={() => handleClick(index)} animate={animateIndex === index}>
             {num}
           </NumBtn>
         ))}
@@ -144,6 +148,19 @@ const NumBtn = styled.div`
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  animation: ${({ animate }) => (animate ? 'validBlink 0.3s ease-in-out' : 'none')};
+
+  @keyframes validBlink {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+  }
 `;
 
 export default Game;
