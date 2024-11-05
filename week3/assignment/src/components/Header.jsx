@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import TABS_DATA from '../data/tabs';
 
-const Header = ({ handleTabActive, activeTab, setLevel }) => {
+const Header = ({ handleTabActive, activeTab, setLevel, time, resetTimer }) => {
   const handleLevel = (e) => {
     setLevel(e.target.value);
+    resetTimer();
   };
 
   return (
@@ -26,7 +27,7 @@ const Header = ({ handleTabActive, activeTab, setLevel }) => {
             <option value="level2">level2</option>
             <option value="level3">level3</option>
           </LevelSelect>
-          <Timer>00:00</Timer>
+          <Timer>{time.toFixed(2)}</Timer>
         </MenuContainer>
       )}
     </Wrapper>
@@ -82,7 +83,9 @@ const LevelSelect = styled.select`
 `;
 
 const Timer = styled.p`
+  width: 3rem;
   color: ${({ theme }) => theme.colors.white};
+  text-align: center;
 `;
 
 export default Header;
