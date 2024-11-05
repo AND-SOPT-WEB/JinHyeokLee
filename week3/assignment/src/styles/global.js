@@ -10,6 +10,10 @@ const GlobalStyle = css`
   a {
     text-decoration: none;
   }
+
+  body {
+    background-color: #dff2eb;
+  }
 `;
 
 export default GlobalStyle;
