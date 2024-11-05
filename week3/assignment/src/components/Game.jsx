@@ -1,16 +1,13 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import LEVEL_DATA from '../data/level';
+import formatDate from '../utils/formatDate.js';
 
-const Game = ({ level, setIsActiveTimer, resetTimer }) => {
+const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
   const [firstNumbers, setFirstNumbers] = useState([]);
   const [secondNumbers, setSecondNumbers] = useState([]);
   const [nextNum, setNextNum] = useState(1);
   const [clicked, setClicked] = useState([]);
-
-  useEffect(() => {
-    initGame();
-  }, [level]);
 
   // 게임 초기 시작 세팅
   const initGame = () => {
@@ -48,6 +45,7 @@ const Game = ({ level, setIsActiveTimer, resetTimer }) => {
     // 게임 종료
     if (nextNum === LEVEL_DATA[level].size * 2) {
       alert('끝났습니다.');
+      saveRecord();
       initGame();
       resetTimer();
     }
@@ -82,6 +80,24 @@ const Game = ({ level, setIsActiveTimer, resetTimer }) => {
     setFirstNumbers(updatedNumbers);
     setNextNum((prev) => prev + 1);
   };
+
+  // 기록 저장
+  const saveRecord = () => {
+    const record = {
+      date: formatDate(),
+      level,
+      time,
+    };
+
+    const recordList = JSON.parse(localStorage.getItem('recordList') || '[]');
+    recordList.push(record);
+
+    localStorage.setItem('recordList', JSON.stringify(recordList));
+  };
+
+  useEffect(() => {
+    initGame();
+  }, [level]);
 
   return (
     <Wrapper>

@@ -34,10 +34,12 @@ function App() {
         handleTabActive={handleTabActive}
         activeTab={activeTab}
         setLevel={setLevel}
-        time={time}
+        time={time.toFixed(2)}
         resetTimer={resetTimer}
       />
-      {activeTab === 'game' && <Game level={level} setIsActiveTimer={setIsActiveTimer} resetTimer={resetTimer} />}
+      {activeTab === 'game' && (
+        <Game level={level} setIsActiveTimer={setIsActiveTimer} time={time.toFixed(2)} resetTimer={resetTimer} />
+      )}
     </>
   );
 }

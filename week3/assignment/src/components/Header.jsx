@@ -27,7 +27,7 @@ const Header = ({ handleTabActive, activeTab, setLevel, time, resetTimer }) => {
             <option value="level2">level2</option>
             <option value="level3">level3</option>
           </LevelSelect>
-          <Timer>{time.toFixed(2)}</Timer>
+          <Timer>{time}</Timer>
         </MenuContainer>
       )}
     </Wrapper>
