@@ -17,7 +17,6 @@ const Game = ({ level }) => {
     const size = LEVEL_DATA[level].size;
     setFirstNumbers(generateRandomNumbers(size));
     setSecondNumbers(generateSecondNumbers(size));
-    setClicked(Array(size).fill(false));
     setNextNum(1);
   };
 
@@ -40,6 +39,11 @@ const Game = ({ level }) => {
       handleFirstLayerClick(index);
     } else if (isSecondLayer(index)) {
       handleSecondLayerClick(index);
+    }
+
+    if (nextNum === LEVEL_DATA[level].size * 2) {
+      alert('끝났습니다.');
+      initGame();
     }
   };
 
