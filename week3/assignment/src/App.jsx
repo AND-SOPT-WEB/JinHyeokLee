@@ -11,6 +11,7 @@ function App() {
   const [time, setTime] = useState(0);
   const [isActiveTimer, setIsActiveTimer] = useState(false);
 
+  // 타이머 리셋
   const resetTimer = () => {
     setTime(0);
     setIsActiveTimer(false);
@@ -26,9 +27,15 @@ function App() {
     return () => clearInterval(timer);
   }, [isActiveTimer]);
 
+  // tab
   const handleTabActive = (tabId) => {
     setActiveTab(tabId);
     localStorage.setItem('activeTab', tabId);
+
+    if (tabId === 'game') {
+      setLevel('level1'); // 다른 탭 갔다가 game오면 level1으로 초기화
+      resetTimer();
+    }
   };
 
   return (

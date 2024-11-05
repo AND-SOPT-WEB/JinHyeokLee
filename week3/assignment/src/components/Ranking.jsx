@@ -7,9 +7,26 @@ const Ranking = ({ resetTimer }) => {
   useEffect(() => {
     resetTimer();
 
-    const recordList = JSON.parse(localStorage.getItem('recordList')) || [];
-    setRecordList(recordList);
-  }, []);
+    const storedRecords = JSON.parse(localStorage.getItem('recordList')) || [];
+    const sortedRecords = sortRecords(storedRecords);
+
+    setRecordList(sortedRecords);
+  }, [resetTimer]);
+
+  // 레벨 -> 내림차순, 시간 -> 오름차순 정렬
+  const sortRecords = (records) => {
+    return records.sort((a, b) => {
+      // level이 문자열 'level1'이라 숫자부분 추출해서 파싱하는 역할
+      const levelA = parseInt(a.level.replace('level', ''), 10);
+      const levelB = parseInt(b.level.replace('level', ''), 10);
+
+      if (levelB !== levelA) {
+        return levelB - levelA; // 레벨 내림차순
+      }
+
+      return a.time - b.time; // 시간 오름차순
+    });
+  };
 
   const resetRecordList = () => {
     localStorage.removeItem('recordList');
