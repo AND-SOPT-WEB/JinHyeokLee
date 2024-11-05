@@ -2,20 +2,25 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 const Ranking = ({ resetTimer }) => {
-  const [recordList, setRankingList] = useState([]);
+  const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
     resetTimer();
 
     const recordList = JSON.parse(localStorage.getItem('recordList')) || [];
-    setRankingList(recordList);
+    setRecordList(recordList);
   }, []);
+
+  const resetRecordList = () => {
+    localStorage.removeItem('recordList');
+    setRecordList([]);
+  };
 
   return (
     <Wrapper>
       <HeaderContainer>
         <Title>랭킹</Title>
-        <ResetBtn>초기화</ResetBtn>
+        <ResetBtn onClick={resetRecordList}>초기화</ResetBtn>
       </HeaderContainer>
       <Table>
         <thead>
