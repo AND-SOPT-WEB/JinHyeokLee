@@ -44,6 +44,7 @@ function App() {
         <Game level={level} setIsActiveTimer={setIsActiveTimer} time={time.toFixed(2)} resetTimer={resetTimer} />
       )}
       {activeTab === 'ranking' && <Ranking resetTimer={resetTimer} />}
+      <div id="modal" />
     </>
   );
 }

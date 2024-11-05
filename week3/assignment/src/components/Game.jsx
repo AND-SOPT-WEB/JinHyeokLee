@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import LEVEL_DATA from '../data/level';
 import formatDate from '../utils/formatDate.js';
 
@@ -8,6 +9,8 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
   const [secondNumbers, setSecondNumbers] = useState([]);
   const [nextNum, setNextNum] = useState(1);
   const [clicked, setClicked] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTime, setModalTime] = useState(null);
   const [animateIndex, setAnimateIndex] = useState(null);
 
   // 게임 초기 시작 세팅
@@ -48,7 +51,8 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
 
     // 게임 종료
     if (nextNum === LEVEL_DATA[level].size * 2) {
-      alert(time);
+      setModalTime(time);
+      setIsModalOpen(true);
       saveRecord();
       initGame();
       resetTimer();
@@ -99,6 +103,12 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
     localStorage.setItem('recordList', JSON.stringify(recordList));
   };
 
+  // 모달 닫기 -> 게임 끝났다는 것이니 init
+  const closeModal = () => {
+    setIsModalOpen(false);
+    initGame();
+  };
+
   useEffect(() => {
     initGame();
   }, [level]);
@@ -113,6 +123,16 @@ const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
           </NumBtn>
         ))}
       </GamePadContainer>
+      {isModalOpen &&
+        createPortal(
+          <Overlay onClick={closeModal}>
+            <Modal>
+              <ModalTime>{modalTime}초가 걸렸습니다!</ModalTime>
+              <button onClick={closeModal}>확인</button>
+            </Modal>
+          </Overlay>,
+          document.getElementById('modal'),
+        )}
     </Wrapper>
   );
 };
@@ -161,6 +181,35 @@ const NumBtn = styled.div`
       transform: scale(0.9);
     }
   }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Modal = styled.div`
+  width: 15rem;
+  height: 10rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const ModalTime = styled.p`
+  font-size: 1.5rem;
 `;
 
 export default Game;
