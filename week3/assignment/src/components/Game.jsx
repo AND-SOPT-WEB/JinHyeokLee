@@ -1,0 +1,215 @@
+import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import LEVEL_DATA from '../data/level';
+import formatDate from '../utils/formatDate.js';
+
+const Game = ({ level, setIsActiveTimer, time, resetTimer }) => {
+  const [firstNumbers, setFirstNumbers] = useState([]);
+  const [secondNumbers, setSecondNumbers] = useState([]);
+  const [nextNum, setNextNum] = useState(1);
+  const [clicked, setClicked] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTime, setModalTime] = useState(null);
+  const [animateIndex, setAnimateIndex] = useState(null);
+
+  // 게임 초기 시작 세팅
+  const initGame = () => {
+    const size = LEVEL_DATA[level].size;
+    setFirstNumbers(generateRandomNumbers(size));
+    setSecondNumbers(generateSecondNumbers(size));
+    setNextNum(1);
+    setClicked([]);
+    setAnimateIndex(null);
+  };
+
+  // 랜덤 숫자 생성
+  const generateRandomNumbers = (size) => shuffleArray(Array.from({ length: size }, (_, idx) => idx + 1));
+  const generateSecondNumbers = (size) => Array.from({ length: size }, (_, idx) => size + idx + 1);
+
+  // 섞는 알고리즘 (Fisher-Yates)
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  // NumBtn 클릭 로직
+  const handleClick = (index) => {
+    if (nextNum === 1) {
+      setIsActiveTimer(true);
+    }
+
+    if (isFirstLayer(index)) {
+      handleFirstLayerClick(index);
+      setAnimateIndex(index);
+    } else if (isSecondLayer(index)) {
+      handleSecondLayerClick(index);
+    }
+
+    // 게임 종료
+    if (nextNum === LEVEL_DATA[level].size * 2) {
+      setModalTime(time);
+      setIsModalOpen(true);
+      saveRecord();
+      initGame();
+      resetTimer();
+    }
+  };
+
+  // 앞 면 클릭
+  const isFirstLayer = (index) => firstNumbers[index] === nextNum;
+
+  const handleFirstLayerClick = (index) => {
+    const updatedClicked = [...clicked];
+    updatedClicked[index] = true;
+    setClicked(updatedClicked);
+    updateNumbers(index);
+  };
+
+  // 뒷 면 클릭
+  const isSecondLayer = (index) => firstNumbers[index] > LEVEL_DATA[level].size;
+
+  const handleSecondLayerClick = (index) => {
+    const updatedNumbers = [...firstNumbers];
+    if (secondNumbers[nextNum - 1] === firstNumbers[index]) {
+      updatedNumbers[index] = null;
+      setFirstNumbers(updatedNumbers);
+    }
+  };
+
+  // 숫자 업데이트
+  const updateNumbers = (index) => {
+    const updatedNumbers = [...firstNumbers];
+    updatedNumbers[index] = secondNumbers[nextNum - 1];
+
+    setFirstNumbers(updatedNumbers);
+    setNextNum((prev) => prev + 1);
+  };
+
+  // 기록 저장
+  const saveRecord = () => {
+    const record = {
+      date: formatDate(),
+      level,
+      time,
+    };
+
+    const recordList = JSON.parse(localStorage.getItem('recordList') || '[]');
+    recordList.push(record);
+
+    localStorage.setItem('recordList', JSON.stringify(recordList));
+  };
+
+  // 모달 닫기 -> 게임 끝났다는 것이니 init
+  const closeModal = () => {
+    setIsModalOpen(false);
+    initGame();
+  };
+
+  useEffect(() => {
+    initGame();
+  }, [level]);
+
+  return (
+    <Wrapper>
+      <NextNum>다음 숫자 : {nextNum}</NextNum>
+      <GamePadContainer size={LEVEL_DATA[level].size}>
+        {firstNumbers.map((num, index) => (
+          <NumBtn key={index} onClick={() => handleClick(index)} animate={animateIndex === index}>
+            {num}
+          </NumBtn>
+        ))}
+      </GamePadContainer>
+      {isModalOpen &&
+        createPortal(
+          <Overlay onClick={closeModal}>
+            <Modal>
+              <ModalTime>{modalTime}초가 걸렸습니다!</ModalTime>
+              <button onClick={closeModal}>확인</button>
+            </Modal>
+          </Overlay>,
+          document.getElementById('modal'),
+        )}
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5rem;
+`;
+
+const NextNum = styled.p`
+  font-size: 1.5rem;
+  font-weight: 700;
+`;
+
+const GamePadContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${({ size }) => Math.sqrt(size)}, 1fr);
+  grid-template-rows: repeat(${({ size }) => Math.sqrt(size)}, 1fr);
+  gap: 0.5rem;
+`;
+
+const NumBtn = styled.div`
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.blue2};
+  color: ${({ theme }) => theme.colors.blue4};
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  animation: ${({ animate }) => (animate ? 'validBlink 0.3s ease-in-out' : 'none')};
+
+  @keyframes validBlink {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.9);
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Modal = styled.div`
+  width: 15rem;
+  height: 10rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const ModalTime = styled.p`
+  font-size: 1.5rem;
+`;
+
+export default Game;
