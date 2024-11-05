@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import TABS_DATA from '../data/tabs';
 
-const Header = ({ handleTabActive, activeTab }) => {
+const Header = ({ handleTabActive, activeTab, setLevel }) => {
+  const handleLevel = (e) => {
+    setLevel(e.target.value);
+  };
+
   return (
     <Wrapper>
       <MenuContainer>
@@ -17,10 +21,10 @@ const Header = ({ handleTabActive, activeTab }) => {
 
       {activeTab === 'game' && (
         <MenuContainer>
-          <LevelSelect>
-            <option value="Level1">Level 1</option>
-            <option value="Level2">Level 2</option>
-            <option value="Level2">Level 3</option>
+          <LevelSelect onChange={handleLevel}>
+            <option value="level1">level1</option>
+            <option value="level2">level2</option>
+            <option value="level3">level3</option>
           </LevelSelect>
           <Timer>00:00</Timer>
         </MenuContainer>
@@ -58,13 +62,15 @@ const ButtonBox = styled.div`
 `;
 
 const MenuButton = styled.button`
-  width: 3rem;
-  height: 2rem;
-  background-color: ${({ $isActive, theme }) => ($isActive ? theme.colors.blue2 : 'transparent')};
-  color: ${({ $isActive, theme }) => ($isActive ? theme.colors.black : theme.colors.white)};
+  width: 4rem;
+  height: 2.5rem;
   border: none;
   border-radius: 0.5rem;
+  background-color: ${({ $isActive, theme }) => ($isActive ? theme.colors.blue2 : 'transparent')};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.colors.black : theme.colors.white)};
   transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
 `;
 
