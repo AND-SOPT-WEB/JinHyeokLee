@@ -7,20 +7,22 @@ function App() {
   const [activeTab, setActiveTab] = useState(TABS_DATA[0].id);
   const [level, setLevel] = useState('level1');
   const [time, setTime] = useState(0);
+  const [isActiveTimer, setIsActiveTimer] = useState(false);
 
   const resetTimer = () => {
     setTime(0);
+    setIsActiveTimer(false);
   };
 
   useEffect(() => {
     let timer;
-    // if (isTimerRunning) {
-    timer = setInterval(() => {
-      setTime((prevTime) => prevTime + 0.01);
-    }, 10);
-    // }
+    if (isActiveTimer) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 0.01);
+      }, 10);
+    }
     return () => clearInterval(timer);
-  }, []);
+  }, [isActiveTimer]);
 
   const handleTabActive = (tabId) => {
     setActiveTab(tabId);
@@ -35,7 +37,7 @@ function App() {
         time={time}
         resetTimer={resetTimer}
       />
-      {activeTab === 'game' && <Game level={level} />}
+      {activeTab === 'game' && <Game level={level} setIsActiveTimer={setIsActiveTimer} resetTimer={resetTimer} />}
     </>
   );
 }

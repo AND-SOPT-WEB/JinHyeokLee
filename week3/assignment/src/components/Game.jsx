@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import LEVEL_DATA from '../data/level';
 
-const Game = ({ level }) => {
+const Game = ({ level, setIsActiveTimer, resetTimer }) => {
   const [firstNumbers, setFirstNumbers] = useState([]);
   const [secondNumbers, setSecondNumbers] = useState([]);
   const [nextNum, setNextNum] = useState(1);
@@ -35,15 +35,21 @@ const Game = ({ level }) => {
 
   // NumBtn 클릭 로직
   const handleClick = (index) => {
+    if (nextNum === 1) {
+      setIsActiveTimer(true);
+    }
+
     if (isFirstLayer(index)) {
       handleFirstLayerClick(index);
     } else if (isSecondLayer(index)) {
       handleSecondLayerClick(index);
     }
 
+    // 게임 종료
     if (nextNum === LEVEL_DATA[level].size * 2) {
       alert('끝났습니다.');
       initGame();
+      resetTimer();
     }
   };
 
