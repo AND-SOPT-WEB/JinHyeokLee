@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Game from './components/Game';
 import Header from './components/Header';
+import Ranking from './components/Ranking';
 import TABS_DATA from './data/tabs';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       {activeTab === 'game' && (
         <Game level={level} setIsActiveTimer={setIsActiveTimer} time={time.toFixed(2)} resetTimer={resetTimer} />
       )}
+      {activeTab === 'ranking' && <Ranking resetTimer={resetTimer} />}
     </>
   );
 }
