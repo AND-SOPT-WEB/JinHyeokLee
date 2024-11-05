@@ -5,7 +5,8 @@ import Ranking from './components/Ranking';
 import TABS_DATA from './data/tabs';
 
 function App() {
-  const [activeTab, setActiveTab] = useState(TABS_DATA[0].id);
+  const savedTab = localStorage.getItem('activeTab') || TABS_DATA[0].id;
+  const [activeTab, setActiveTab] = useState(savedTab);
   const [level, setLevel] = useState('level1');
   const [time, setTime] = useState(0);
   const [isActiveTimer, setIsActiveTimer] = useState(false);
@@ -27,6 +28,7 @@ function App() {
 
   const handleTabActive = (tabId) => {
     setActiveTab(tabId);
+    localStorage.setItem('activeTab', tabId);
   };
 
   return (
