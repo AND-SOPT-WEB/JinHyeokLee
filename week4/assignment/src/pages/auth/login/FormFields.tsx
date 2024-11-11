@@ -2,7 +2,8 @@ import { Button } from "@components";
 import { routePath } from "@constants";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+
+const FormFields = () => {
   const navigate = useNavigate();
 
   const navigateToSignUp = () => {
@@ -10,31 +11,14 @@ const Login = () => {
   };
 
   return (
-    <Wrapper>
-      <Title>로그인</Title>
-      <FormLayout>
-        <Input placeholder="로그인"></Input>
-        <Input placeholder="회원가입"></Input>
-        <Button>로그인</Button>
-      </FormLayout>
+    <FormLayout>
+      <Input placeholder="로그인"></Input>
+      <Input placeholder="회원가입"></Input>
+      <Button>로그인</Button>
       <SubButton onClick={navigateToSignUp}>회원가입</SubButton>
-    </Wrapper>
+    </FormLayout>
   );
 };
-
-const Wrapper = styled.div`
-  width: 24rem;
-  padding: 2rem 0;
-  margin: auto;
-  margin-top: 10rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Title = styled.div`
-  ${({ theme }) => theme.fonts.title}
-`;
 
 const FormLayout = styled.div`
   width: 100%;
@@ -64,4 +48,4 @@ const SubButton = styled.button`
   cursor: pointer;
 `;
 
-export default Login;
+export default FormFields;

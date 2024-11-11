@@ -1,5 +1,5 @@
 import { routePath } from "@constants";
-import Login from "../pages/auth/login/Login";
+import Login from "../pages/auth/login";
 import SignUp from "../pages/auth/signUp/SignUp";
 import { RouteType } from "../types/routeType";
 
