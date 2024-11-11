@@ -1,10 +1,6 @@
 import { css } from "@emotion/react";
 
 const GlobalStyle = css`
-  * {
-    box-sizing: border-box;
-  }
-
   a {
     text-decoration: none;
   }
@@ -112,8 +108,10 @@ const GlobalStyle = css`
   section {
     display: block;
   }
+
   body {
     line-height: 1;
+    background-color: #e9efec;
   }
   ol,
   ul {
@@ -136,6 +134,11 @@ const GlobalStyle = css`
   }
   button {
     all: unset;
+    box-sizing: border-box; // all: unset을 하면 box-sizing도 초기화 될 가능성이 있어서 따로 추가
+  }
+
+  * {
+    box-sizing: border-box;
   }
 `;
 
