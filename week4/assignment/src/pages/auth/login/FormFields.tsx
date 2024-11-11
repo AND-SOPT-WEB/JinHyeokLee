@@ -10,17 +10,23 @@ const FormFields = () => {
     navigate(routePath.SIGN_UP);
   };
 
+  const temp = () => {
+    alert("로그인 api");
+  };
+
   return (
     <FormLayout>
-      <Input placeholder="로그인"></Input>
-      <Input placeholder="회원가입"></Input>
-      <Button>로그인</Button>
-      <SubButton onClick={navigateToSignUp}>회원가입</SubButton>
+      <Input placeholder="아이디"></Input>
+      <Input placeholder="비밀번호"></Input>
+      <Button onClick={temp}>로그인</Button>
+      <SubButton type="button" onClick={navigateToSignUp}>
+        회원가입
+      </SubButton>
     </FormLayout>
   );
 };
 
-const FormLayout = styled.div`
+const FormLayout = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;

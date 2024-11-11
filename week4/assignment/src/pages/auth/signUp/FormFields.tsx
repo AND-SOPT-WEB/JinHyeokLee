@@ -2,8 +2,21 @@ import { Button } from "@components";
 import { routePath } from "@constants";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { StepInfo } from "src/types/signUpTypes";
 
-const FormFields = () => {
+interface FormFieldsProps {
+  step: number;
+  currentStep: StepInfo;
+  handleNextStep: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const FormFields = ({
+  step,
+  currentStep,
+  handleNextStep,
+  onChange,
+}: FormFieldsProps) => {
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
@@ -12,8 +25,19 @@ const FormFields = () => {
 
   return (
     <FormLayout>
-      <Input placeholder="이름"></Input>
-      <Button>다음</Button>
+      {currentStep.inputs.map(({ name, type, placeholder }) => (
+        <Input
+          key={name}
+          type={type}
+          placeholder={placeholder}
+          name={name}
+          onChange={onChange}
+        />
+      ))}
+      <Button onClick={handleNextStep}>
+        {step === 3 ? "회원가입" : "다음"}
+      </Button>
+
       <SubText>
         이미 회원이신가요?{" "}
         <SubButton onClick={navigateToLogin}>로그인</SubButton>

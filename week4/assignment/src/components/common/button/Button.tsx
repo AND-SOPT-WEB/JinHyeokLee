@@ -1,8 +1,16 @@
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
 
-const Button = ({ children }: PropsWithChildren) => {
-  return <Wrapper>{children}</Wrapper>;
+interface ButtonProps {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const Button = ({ children, onClick }: PropsWithChildren<ButtonProps>) => {
+  return (
+    <Wrapper type="button" onClick={onClick}>
+      {children}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.button`
