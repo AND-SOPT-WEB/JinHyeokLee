@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import FormFields from "./FormFields";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <Wrapper>
-      <Title>로그인</Title>
+      <Title>회원가입</Title>
+      <SubTitle>이름</SubTitle>
       <FormFields />
     </Wrapper>
   );
@@ -23,4 +24,10 @@ const Title = styled.div`
   ${({ theme }) => theme.fonts.title}
 `;
 
-export default Login;
+const SubTitle = styled.p`
+  align-self: flex-start;
+  ${({ theme }) => theme.fonts.subTitle}
+  margin-top: 3rem;
+`;
+
+export default SignUp;

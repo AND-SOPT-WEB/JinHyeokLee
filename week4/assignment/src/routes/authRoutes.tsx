@@ -1,6 +1,6 @@
 import { routePath } from "@constants";
 import Login from "../pages/auth/login";
-import SignUp from "../pages/auth/signUp/SignUp";
+import SignUp from "../pages/auth/signUp";
 import { RouteType } from "../types/routeType";
 
 const authRoutes: RouteType[] = [

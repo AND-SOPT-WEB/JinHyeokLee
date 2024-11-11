@@ -19,7 +19,7 @@ const theme = {
       font-weight: 700;
     `,
     subTitle: css`
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
     `,
     content: css`
@@ -35,6 +35,5 @@ const theme = {
 
 export type ColorsType = typeof theme.colors;
 export type FontsType = typeof theme.fonts;
-
 
 export default theme;
