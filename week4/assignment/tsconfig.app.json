@@ -26,6 +26,7 @@
     "paths": {
       "@constants": ["src/constants"],
       "@pages/*": ["src/pages/*"],
+      "@components": ["src/components/common"],
       "@routes": ["src/routes"],
       "@types": ["src/types"]
     }

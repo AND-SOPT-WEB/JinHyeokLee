@@ -7,7 +7,7 @@ const theme = {
     green3: "#6A9C89",
     green4: "#16423C",
 
-    white: "ffffff",
+    white: "#ffffff",
 
     black1: "#000000B3",
     black2: "000000",
@@ -24,9 +24,17 @@ const theme = {
     `,
     content: css`
       font-size: 1rem;
+      font-weight: 700;
+    `,
+    content2: css`
+      font-size: 1rem;
       font-weight: 500;
     `,
   },
 };
+
+export type ColorsType = typeof theme.colors;
+export type FontsType = typeof theme.fonts;
+
 
 export default theme;
