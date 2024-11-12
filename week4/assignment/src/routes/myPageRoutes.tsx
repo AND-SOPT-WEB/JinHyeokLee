@@ -1,16 +1,23 @@
-import { routePath } from "@constants";
-import Hobby from "@pages/myPage/hobby/Hobby";
-import Info from "@pages/myPage/info/Info";
-import { RouteType } from "src/types/routeType";
+import { routePath } from '@constants';
+import Hobby from '@pages/hobby/Hobby';
+import Info from '@pages/info/Info';
+import MyPage from '@pages/myPage/MyPage';
+import { RouteType } from 'src/types/routeType';
 
 const myPageRoutes: RouteType[] = [
   {
-    path: routePath.MY_PAGE_HOBBY,
-    element: <Hobby />,
-  },
-  {
-    path: routePath.MY_PAGE_INFO,
-    element: <Info />,
+    path: routePath.MY_PAGE,
+    element: <MyPage />, // MyPage가 부모 컴포넌트
+    children: [
+      {
+        path: routePath.MY_PAGE_HOBBY, // /users/me/hobby
+        element: <Hobby />, // Hobby 컴포넌트
+      },
+      {
+        path: routePath.MY_PAGE_INFO, // /users/me/info
+        element: <Info />, // Info 컴포넌트
+      },
+    ],
   },
 ];
 

@@ -34,6 +34,7 @@ const FormFields = () => {
         localStorage.setItem('token', result.result.token);
         alert('로그인 성공');
         // 라우팅
+        navigate(routePath.MY_PAGE);
       }
     } catch (error) {
       const { status, code } = handleError(error as Error);
