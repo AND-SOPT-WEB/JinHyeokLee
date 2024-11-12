@@ -1,17 +1,30 @@
 import { Button } from '@components';
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import { getMyHobby } from 'src/apis/myPage';
 
 const Hobby = () => {
+  const [myHobby, setMyHobby] = useState('');
+
   const tempSearch = () => {
     console.log('검색');
   };
+
+  const fetchMyHobby = async () => {
+    const data = await getMyHobby();
+    setMyHobby(data.result.hobby);
+  };
+
+  useEffect(() => {
+    fetchMyHobby();
+  }, []);
 
   return (
     <Wrapper>
       <Title>취미</Title>
       <ContentLayout>
         <SubTitle>나의 취미</SubTitle>
-        <HobbyText>독서</HobbyText>
+        <HobbyText>{myHobby}</HobbyText>
       </ContentLayout>
 
       <ContentLayout>
