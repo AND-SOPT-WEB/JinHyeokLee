@@ -21,10 +21,16 @@ const Info = () => {
 
   const handleSubmit = async () => {
     try {
+      if (newPassword === '' && newHobby === '') {
+        alert('최소 하나의 수정 정보가 필요합니다.');
+        return;
+      }
+
       const updateData = {
         hobby: newHobby,
         password: newPassword,
       };
+
       await updateUserInfo(updateData);
       alert('정보 수정이 완료되었습니다.');
       localStorage.removeItem('token');

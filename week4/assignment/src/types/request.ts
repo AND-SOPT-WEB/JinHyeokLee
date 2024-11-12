@@ -5,6 +5,6 @@ export interface RegisterUserRequest {
 }
 
 export interface UpdateUserRequest {
-  hobby: string;
-  password: string;
+  hobby?: string;
+  password?: string;
 }
