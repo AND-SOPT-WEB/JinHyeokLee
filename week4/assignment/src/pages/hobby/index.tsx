@@ -1,6 +1,6 @@
 import { Button } from '@components';
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getMyHobby } from 'src/apis/myPage';
 import { handleError } from 'src/utils/errorUtil';
 
@@ -28,9 +28,7 @@ const Hobby = () => {
     }
   };
 
-  useEffect(() => {
-    fetchMyHobby();
-  }, []);
+  fetchMyHobby(); // useEffect를 지양하라고 해서 이렇게 했는데 이게 맞을까..?
 
   return (
     <Wrapper>
@@ -43,8 +41,9 @@ const Hobby = () => {
       <ContentLayout>
         <SubTitle>다른 사람들의 취미</SubTitle>
         <OtherUserInput></OtherUserInput>
+        <Button onClick={tempSearch}>검색하기</Button>
+        <OtherUserHobby>다른 사람 취미</OtherUserHobby>
       </ContentLayout>
-      <Button onClick={tempSearch}>검색하기</Button>
     </Wrapper>
   );
 };
@@ -75,7 +74,9 @@ const SubTitle = styled.p`
   ${({ theme }) => theme.fonts.subTitle}
 `;
 
-const HobbyText = styled.p``;
+const HobbyText = styled.p`
+  ${({ theme }) => theme.fonts.subTitle2}
+`;
 
 const OtherUserInput = styled.input`
   width: 100%;
@@ -87,6 +88,11 @@ const OtherUserInput = styled.input`
   &:focus {
     outline: 1px solid ${({ theme }) => theme.colors.green3};
   }
+`;
+
+const OtherUserHobby = styled.p`
+  ${({ theme }) => theme.fonts.content2}
+  color: ${({ theme }) => theme.colors.green3};
 `;
 
 export default Hobby;
