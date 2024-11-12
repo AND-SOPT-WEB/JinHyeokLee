@@ -75,7 +75,7 @@ const SignUp = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { passwordConfirm, ...dataToSubmit } = formData; // 비밀번호 확인 데이터는 빼고 보내기
       const result = await registerUser(dataToSubmit);
-
+      console.log(result);
       if (result?.result) {
         alert('회원가입 성공');
         navigate(routePath.LOGIN);

@@ -1,14 +1,16 @@
 import { Button } from '@components';
 import styled from '@emotion/styled';
-import { useState } from 'react';
-import { getMyHobby } from 'src/apis/myPage';
+import { ChangeEvent, useState } from 'react';
+import { getMyHobby, getOtherHobby } from 'src/apis/myPage';
 import { handleError } from 'src/utils/errorUtil';
 
 const Hobby = () => {
   const [myHobby, setMyHobby] = useState('');
+  const [otherHobby, setOtherHobby] = useState('');
+  const [otherNum, setOtherNum] = useState('');
 
-  const tempSearch = () => {
-    console.log('검색');
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setOtherNum(e.target.value);
   };
 
   const fetchMyHobby = async () => {
@@ -30,6 +32,21 @@ const Hobby = () => {
 
   fetchMyHobby(); // useEffect를 지양하라고 해서 이렇게 했는데 이게 맞을까..?
 
+  const fetchOtherHobby = async () => {
+    try {
+      const data = await getOtherHobby(otherNum);
+      setOtherHobby(data.result.hobby);
+    } catch (error) {
+      const { status, code } = handleError(error as Error);
+
+      if (status === 404 && code === '01') {
+        alert('존재하지 않는 숫자입니다.');
+      } else {
+        alert('알 수 없는 오류가 발생했습니다.');
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <Title>취미</Title>
@@ -40,9 +57,9 @@ const Hobby = () => {
 
       <ContentLayout>
         <SubTitle>다른 사람들의 취미</SubTitle>
-        <OtherUserInput></OtherUserInput>
-        <Button onClick={tempSearch}>검색하기</Button>
-        <OtherUserHobby>다른 사람 취미</OtherUserHobby>
+        <OtherUserInput onChange={handleChange}></OtherUserInput>
+        <Button onClick={fetchOtherHobby}>검색하기</Button>
+        <OtherUserHobby>{otherHobby}</OtherUserHobby>
       </ContentLayout>
     </Wrapper>
   );
