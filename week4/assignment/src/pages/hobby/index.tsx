@@ -1,50 +1,18 @@
 import { Button } from '@components';
 import styled from '@emotion/styled';
 import { ChangeEvent, useState } from 'react';
-import { getMyHobby, getOtherHobby } from 'src/apis/hobby';
-import { handleError } from 'src/utils/errorUtil';
+import useHobby from 'src/hooks/useHobby';
 
 const Hobby = () => {
-  const [myHobby, setMyHobby] = useState('');
-  const [otherHobby, setOtherHobby] = useState('');
+  const { myHobby, otherHobby, fetchOtherHobby } = useHobby();
   const [otherNum, setOtherNum] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOtherNum(e.target.value);
   };
 
-  const fetchMyHobby = async () => {
-    try {
-      const data = await getMyHobby();
-      setMyHobby(data.result.hobby);
-    } catch (error) {
-      const { status } = handleError(error as Error);
-
-      if (status === 401) {
-        alert('토큰이 존재하지 않습니다. 다시 로그인해주세요.');
-      } else if (status === 403) {
-        alert('유효하지 않은 토큰입니다. 다시 로그인 해 주세요.');
-      } else {
-        alert('알 수 없는 오류가 발생했습니다.');
-      }
-    }
-  };
-
-  fetchMyHobby(); // useEffect를 지양하라고 해서 이렇게 했는데 이게 맞을까..?
-
-  const fetchOtherHobby = async () => {
-    try {
-      const data = await getOtherHobby(otherNum);
-      setOtherHobby(data.result.hobby);
-    } catch (error) {
-      const { status, code } = handleError(error as Error);
-
-      if (status === 404 && code === '01') {
-        alert('존재하지 않는 숫자입니다.');
-      } else {
-        alert('알 수 없는 오류가 발생했습니다.');
-      }
-    }
+  const handleFetchOtherHobby = () => {
+    fetchOtherHobby(otherNum);
   };
 
   return (
@@ -58,7 +26,7 @@ const Hobby = () => {
       <ContentLayout>
         <SubTitle>다른 사람들의 취미</SubTitle>
         <OtherUserInput onChange={handleChange}></OtherUserInput>
-        <Button onClick={fetchOtherHobby}>검색하기</Button>
+        <Button onClick={handleFetchOtherHobby}>검색하기</Button>
         <OtherUserHobby>{otherHobby}</OtherUserHobby>
       </ContentLayout>
     </Wrapper>
