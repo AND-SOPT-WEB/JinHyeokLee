@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import FormFields from "./FormFields";
+import styled from '@emotion/styled';
+import FormFields from './FormFields';
 
 const Login = () => {
   return (
