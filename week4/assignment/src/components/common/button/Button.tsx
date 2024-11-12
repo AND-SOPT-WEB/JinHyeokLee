@@ -1,32 +1,36 @@
-import styled from "@emotion/styled";
-import { PropsWithChildren } from "react";
+import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
 
 interface ButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
-const Button = ({ children, onClick }: PropsWithChildren<ButtonProps>) => {
+const Button = ({ children, onClick, disabled }: PropsWithChildren<ButtonProps>) => {
   return (
-    <Wrapper type="button" onClick={onClick}>
+    <Wrapper type="button" onClick={onClick} disabled={disabled}>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.button`
+const Wrapper = styled.button<{ disabled?: boolean }>`
   width: 100%;
   padding: 1rem;
   text-align: center;
   border-radius: 0.3rem;
-  background-color: ${({ theme }) => theme.colors.green3};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, disabled }) => (disabled ? theme.colors.green2 : theme.colors.green3)};
+  color: ${({ theme, disabled }) => (disabled ? theme.colors.green4 : theme.colors.white)};
   transition: all 0.2s ease-in-out;
   ${({ theme }) => theme.fonts.content};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.green4};
+    ${({ disabled, theme }) =>
+      !disabled &&
+      `
+      background-color: ${theme.colors.green4};
+    `}
   }
 `;
 
