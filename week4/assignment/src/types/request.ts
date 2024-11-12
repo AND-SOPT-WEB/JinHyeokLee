@@ -3,3 +3,8 @@ export interface RegisterUserRequest {
   password: string;
   hobby: string;
 }
+
+export interface UpdateUserRequest {
+  hobby: string;
+  password: string;
+}

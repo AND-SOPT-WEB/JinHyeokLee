@@ -1,7 +1,7 @@
 import { Button } from '@components';
 import styled from '@emotion/styled';
 import { ChangeEvent, useState } from 'react';
-import { getMyHobby, getOtherHobby } from 'src/apis/myPage';
+import { getMyHobby, getOtherHobby } from 'src/apis/hobby';
 import { handleError } from 'src/utils/errorUtil';
 
 const Hobby = () => {
