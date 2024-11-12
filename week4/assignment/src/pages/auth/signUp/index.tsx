@@ -2,19 +2,25 @@ import { routePath } from '@constants';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from 'src/apis/auth';
 import STEPS_CONFIG from 'src/constants/stepsConfig';
+import { handleError } from 'src/utils/errorUtil';
 import FormFields from './FormFields';
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     password: '',
     passwordConfirm: '',
     hobby: '',
   });
   const [formError, setFormError] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  // 현재 step에 대한 정보만 불러오기 (index라 -1 해주기)
+  const currentStep = STEPS_CONFIG[step - 1];
+
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,19 +70,34 @@ const SignUp = () => {
     return null; // 일치하면 null 반환
   };
 
+  const handleSubmit = async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { passwordConfirm, ...dataToSubmit } = formData; // 비밀번호 확인 데이터는 빼고 보내기
+      const result = await registerUser(dataToSubmit);
+
+      if (result?.result) {
+        alert('회원가입 성공');
+        navigate(routePath.LOGIN);
+      }
+    } catch (error) {
+      const { code } = handleError(error as Error);
+      if (code === '00') {
+        alert('중복된 이름입니다. 다시 회원가입 해주세요');
+        navigate(routePath.LOGIN);
+      }
+    }
+  };
+
   const handleNextStep = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (step === 3) {
-      alert('회원가입 완료!');
-      navigate(routePath.LOGIN);
+      handleSubmit();
     } else {
       setStep((prev) => prev + 1);
       setIsButtonDisabled(true);
     }
   };
-
-  // 현재 step에 대한 정보만 불러오기 (index라 -1 해주기)
-  const currentStep = STEPS_CONFIG[step - 1];
 
   return (
     <Wrapper>
