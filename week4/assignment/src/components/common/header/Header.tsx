@@ -17,7 +17,7 @@ const Header = () => {
     <Wrapper>
       <LeftSection>
         <Home>마이페이지</Home>
-        <TabButton onClick={() => navigateToPage(routePath.MY_PAGE_HOBBY)}>취미</TabButton>
+        <TabButton onClick={() => navigateToPage(routePath.MY_PAGE)}>취미</TabButton>
         <TabButton onClick={() => navigateToPage(routePath.MY_PAGE_INFO)}>내 정보</TabButton>
       </LeftSection>
       <RightSection>

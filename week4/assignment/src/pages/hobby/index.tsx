@@ -2,6 +2,7 @@ import { Button } from '@components';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { getMyHobby } from 'src/apis/myPage';
+import { handleError } from 'src/utils/errorUtil';
 
 const Hobby = () => {
   const [myHobby, setMyHobby] = useState('');
@@ -11,8 +12,20 @@ const Hobby = () => {
   };
 
   const fetchMyHobby = async () => {
-    const data = await getMyHobby();
-    setMyHobby(data.result.hobby);
+    try {
+      const data = await getMyHobby();
+      setMyHobby(data.result.hobby);
+    } catch (error) {
+      const { status } = handleError(error as Error);
+
+      if (status === 401) {
+        alert('토큰이 존재하지 않습니다. 다시 로그인해주세요.');
+      } else if (status === 403) {
+        alert('유효하지 않은 토큰입니다. 다시 로그인 해 주세요.');
+      } else {
+        alert('알 수 없는 오류가 발생했습니다.');
+      }
+    }
   };
 
   useEffect(() => {

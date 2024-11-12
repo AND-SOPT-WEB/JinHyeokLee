@@ -7,15 +7,16 @@ import { RouteType } from 'src/types/routeType';
 const myPageRoutes: RouteType[] = [
   {
     path: routePath.MY_PAGE,
-    element: <MyPage />, // MyPage가 부모 컴포넌트
+    element: <MyPage />,
     children: [
       {
-        path: routePath.MY_PAGE_HOBBY, // /users/me/hobby
-        element: <Hobby />, // Hobby 컴포넌트
+        // path: routePath.MY_PAGE_HOBBY,
+        index: true,
+        element: <Hobby />,
       },
       {
-        path: routePath.MY_PAGE_INFO, // /users/me/info
-        element: <Info />, // Info 컴포넌트
+        path: routePath.MY_PAGE_INFO,
+        element: <Info />,
       },
     ],
   },
