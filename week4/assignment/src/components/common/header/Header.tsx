@@ -10,7 +10,10 @@ const Header = () => {
   };
 
   const tempLogout = () => {
-    alert('로그아웃 API 호출');
+    if (confirm('로그아웃 하시겠습니까?')) {
+      localStorage.removeItem('token');
+      navigate(routePath.LOGIN);
+    }
   };
 
   return (
