@@ -10,7 +10,6 @@ const myPageRoutes: RouteType[] = [
     element: <MyPage />,
     children: [
       {
-        // path: routePath.MY_PAGE_HOBBY,
         index: true,
         element: <Hobby />,
       },
