@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import useSignUp from 'src/hooks/useSignUp';
 import FormFields from './FormFields';
 
+
 const SignUp = () => {
   const {
     step,
