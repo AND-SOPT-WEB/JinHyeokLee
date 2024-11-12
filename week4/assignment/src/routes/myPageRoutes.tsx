@@ -1,6 +1,6 @@
 import { routePath } from '@constants';
-import Hobby from '@pages/hobby/Hobby';
-import Info from '@pages/info/Info';
+import Hobby from '@pages/hobby';
+import Info from '@pages/info';
 import MyPage from '@pages/myPage/MyPage';
 import { RouteType } from 'src/types/routeType';
 

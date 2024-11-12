@@ -1,5 +1,5 @@
 const Info = () => {
-  return <div></div>;
+  return <></>;
 };
 
 export default Info;
