@@ -1,65 +1,19 @@
 import { Button } from '@components';
 import { routePath } from '@constants';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from 'src/apis/auth';
-import { handleError } from 'src/utils/errorUtil';
+import useLogin from 'src/hooks/useLogin';
 
 const FormFields = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { username, password, handleInputChange, handleLogin } = useLogin();
   const navigate = useNavigate();
-
-  const navigateToSignUp = () => {
-    navigate(routePath.SIGN_UP);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    if (name === 'username') {
-      setUsername(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
-  };
-
-  const handleLogin = async () => {
-    try {
-      const result = await loginUser(username, password);
-
-      if (result?.result) {
-        localStorage.setItem('token', result.result.token);
-        alert('로그인 성공');
-        // 라우팅
-        navigate(routePath.MY_PAGE);
-      }
-    } catch (error) {
-      const { status, code } = handleError(error as Error);
-
-      if (status === 400) {
-        if (code === '01') {
-          alert('입력한 정보가 유효하지 않습니다.');
-        } else if (code === '02') {
-          alert('로그인 정보가 잘못되었습니다.');
-        }
-      } else if (status === 403) {
-        if (code === '01') {
-          alert('비밀번호가 잘못되었습니다.');
-        }
-      } else {
-        alert('알 수 없는 오류가 발생했습니다.');
-      }
-    }
-  };
 
   return (
     <FormLayout>
       <Input name="username" placeholder="아이디" value={username} onChange={handleInputChange} />
       <Input name="password" type="password" placeholder="비밀번호" value={password} onChange={handleInputChange} />
       <Button onClick={handleLogin}>로그인</Button>
-      <SubButton type="button" onClick={navigateToSignUp}>
+      <SubButton type="button" onClick={() => navigate(routePath.SIGN_UP)}>
         회원가입
       </SubButton>
     </FormLayout>
