@@ -51,6 +51,14 @@ const useSignUp = () => {
       [name]: value,
     }));
 
+    // 비밀번호 & 확인 단계에서는 두개의 input을 전부 확인해야해서 따로.. (쓰레기같다..)
+    if (step === 2) {
+      if (!formData.password.trim() || !formData.passwordConfirm.trim()) {
+        setIsButtonDisabled(true);
+        return;
+      }
+    }
+
     // 버튼 활성화 boolean 값 설정
     if (errorMessage === '') {
       setIsButtonDisabled(false);
@@ -67,6 +75,7 @@ const useSignUp = () => {
     return null;
   };
 
+  // 회원가입 api 연결 함수
   const handleSubmit = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -85,6 +94,7 @@ const useSignUp = () => {
     }
   };
 
+  // step 증가 함수
   const handleNextStep = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (step === 3) {
