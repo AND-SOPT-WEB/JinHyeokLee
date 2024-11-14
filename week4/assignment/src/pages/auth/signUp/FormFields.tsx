@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PwCloseIcon from 'src/assets/pwd_close.svg';
-import ReactComponent from 'src/assets/pwd_open.svg';
+import PwOpenIcon from 'src/assets/pwd_open.svg';
 import { StepInfo } from 'src/types/signUpTypes';
 
 interface FormFieldsProps {
@@ -42,7 +42,7 @@ const FormFields = ({ step, currentStep, handleNextStep, onChange, error, disabl
             <Input type={finalType} placeholder={placeholder} name={name} onChange={onChange} required />
             {isPassword && (
               <IconWrapper onClick={handlePwVisibility}>
-                {isPwVisible ? <Icon src={PwCloseIcon} /> : <Icon src={ReactComponent} />}
+                {isPwVisible ? <Icon src={PwCloseIcon} /> : <Icon src={PwOpenIcon} />}
               </IconWrapper>
             )}
           </InputWrapper>
