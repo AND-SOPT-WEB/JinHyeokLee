@@ -80,9 +80,9 @@ const useSignUp = () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { passwordConfirm, ...dataToSubmit } = formData;
-      const result = await registerUser(dataToSubmit);
-      if (result?.result) {
-        alert('회원가입 성공');
+      const res = await registerUser(dataToSubmit);
+      if (res?.result) {
+        alert(`회원가입 성공, 회원 번호:${res.result.no}`);
         navigate(routePath.LOGIN);
       }
     } catch (error) {
